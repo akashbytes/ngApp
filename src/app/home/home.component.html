@@ -1,0 +1,77 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2><button type="button" class="btn btn-primary btn-sm" (click)="addDepartment()"> <i class="fa fa-plus"></i> Add Department</button>  </h2>
+        </div>
+        
+    </div>
+
+     <div class="row ">
+         <div class="col-md-12 mt-5" *ngFor="let department of departments;let i = index">
+            <div class="card">
+                <div class="card-header">Department {{i+1}} </div>
+                <div class="card-body">
+                        <h2><button type="button" (click)="addManager(department.id,i)" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add Manager</button>  </h2>
+
+                    <ul>
+                        <li *ngFor="let manager of department.managers;let j = index">{{j+1}} Manager  <br/>
+                            <div class="btn-group ">
+                                <button type="button" (click)="addSubmanager(department.id,manager.id,i,j)" class="btn btn-primary btn-sm"> <i class="fa fa-plus"></i> Manager</button>
+                                <button type="button" (click)="addTester(department.id,manager.id,i,j)"  class="btn btn-primary btn-sm"> <i class="fa fa-plus"></i> QA Tester</button>
+                                <button type="button" (click)="addDeveloper(department.id,manager.id,i,j)" class="btn btn-primary btn-sm"> <i class="fa fa-plus"></i> Developer</button>
+                              </div>
+                            <ul>
+                                <li    > {{manager.developer.length}} Developer  </li>
+                            </ul>
+                            
+                            <ul>
+                                    <li    > {{manager.tester.length}} Tester  </li>
+                            </ul>
+                            <ul>
+                                <li *ngFor="let submanger of manager.submangers; let m = index"   > {{m+1}} Manager<br/>
+                                    <div class="btn-group ">
+                                        <button type="button" (click)="addSubTester(department.id,manager.id,submanger.id,i,j,m)" class="btn btn-info btn-sm"> <i class="fa fa-plus"></i> QA Tester</button>
+                                        <button type="button" (click)="addSubDeveloper(department.id,manager.id,submanger.id,i,j,m)" class="btn btn-info btn-sm"> <i class="fa fa-plus"></i> Developer</button>
+                                    </div>
+                                    <ul>
+                                        <li   > {{submanger.tester.length}} Tester  </li>
+                                    </ul>
+                                    <ul>
+                                        <li    > {{submanger.developer.length}} Developer  </li>
+                                    </ul>
+                                    <ul>
+                                        <li>Total : {{submanger.total}}</li>
+        
+                                       </ul>
+                                    
+                                </li>
+                            </ul>
+                            
+                            
+                               <ul>
+                                <li>Total : {{manager.total}}</li>
+
+                               </ul>
+                        </li>
+                    </ul>
+
+                    <!-- <ul>
+                        <li>sss
+                            <ul>
+                                <li>55</li>
+                            </ul>
+                        </li>
+                    </ul>
+                     -->
+                </div>
+                <div class="card-footer">
+                    Total : {{department.total}}
+                </div>
+            </div>
+                
+         </div>
+        
+     </div>   
+   
+
+</div>
